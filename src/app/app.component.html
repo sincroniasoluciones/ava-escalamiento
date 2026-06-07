@@ -1,8 +1,11 @@
 <main class="app-shell">
   <header class="app-shell__header">
     <div class="app-shell__brand" aria-label="AVA">
-      <span class="app-shell__logo" aria-hidden="true">AVA</span>
-      <h1>{{ appName() }}</h1>
+      <span class="app-shell__logo" aria-hidden="true">A</span>
+      <div class="app-shell__title">
+        <h1>AVA</h1>
+        <p>Asistente de Escalamiento Operativo</p>
+      </div>
     </div>
   </header>
 
@@ -10,11 +13,13 @@
     <app-buscador />
   </section>
 
-  <section class="app-shell__section app-shell__section--result" aria-label="Resultado">
-    <app-resultado />
-  </section>
+  <div class="app-shell__workspace">
+    <section class="app-shell__section app-shell__section--result" aria-label="Resultado">
+      <app-resultado />
+    </section>
 
-  <section class="app-shell__section app-shell__section--history" aria-label="Historial">
-    <app-historial />
-  </section>
+    <section class="app-shell__section app-shell__section--history" aria-label="Historial">
+      <app-historial />
+    </section>
+  </div>
 </main>

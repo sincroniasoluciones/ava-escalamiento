@@ -2,15 +2,16 @@
 @use '../../../styles/mixins' as *;
 
 .resultado {
-  @include surface;
-
   display: grid;
-  gap: $space-5;
-  padding: $space-5;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: $space-4;
 }
 
 .resultado--empty {
-  min-height: $result-section-min-height;
+  @include panel;
+
+  min-height: $empty-panel-min-height;
+  grid-template-columns: 1fr;
   place-items: center;
   text-align: center;
 }
@@ -32,25 +33,38 @@
   place-items: center;
   width: $result-empty-icon-size;
   height: $result-empty-icon-size;
-  border-radius: $radius-md;
-  background: $color-search-result-hover;
+  border: $border-width solid $color-border-strong;
+  border-radius: $radius-lg;
+  background: $color-surface;
   color: $color-primary;
-  font-size: $font-size-sm;
+  font-size: $font-size-lg;
   font-weight: $font-weight-bold;
+  box-shadow: $shadow-control;
+}
+
+.resultado__header,
+.resultado__metrics,
+.resultado__section {
+  @include panel;
 }
 
 .resultado__header {
+  grid-column: 1 / -1;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: $space-4;
-  padding-bottom: $space-4;
-  border-bottom: $border-width solid $color-border;
+  padding: $space-5;
+}
+
+.resultado__title {
+  display: grid;
+  gap: $space-1;
 
   h2 {
-    margin: $space-1 0 0;
-    color: $color-primary;
-    font-size: $font-size-xl;
+    margin: 0;
+    color: $color-text-primary;
+    font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
     line-height: $line-height-tight;
   }
@@ -60,6 +74,7 @@
   color: $color-text-muted;
   font-size: $font-size-xs;
   font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-label;
   text-transform: uppercase;
 }
 
@@ -69,7 +84,7 @@
   align-items: center;
   min-height: $badge-min-height;
   padding: $space-1 $space-3;
-  border-radius: $radius-sm;
+  border-radius: $radius-pill;
   font-size: $font-size-xs;
   font-weight: $font-weight-bold;
   white-space: nowrap;
@@ -90,27 +105,74 @@
   color: $color-criticality-low-text;
 }
 
+.resultado__metrics {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $space-3;
+  padding: $space-3;
+}
+
+.resultado__metric {
+  display: grid;
+  gap: $space-2;
+  min-height: $metric-card-min-height;
+  padding: $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-surface-subtle;
+
+  span {
+    color: $color-text-muted;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-label;
+    text-transform: uppercase;
+  }
+
+  strong {
+    overflow-wrap: anywhere;
+    color: $color-text-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-base;
+  }
+}
+
 .resultado__section {
   display: grid;
   gap: $space-3;
+  padding: $space-5;
 
   h3 {
     margin: 0;
     color: $color-text-primary;
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
     font-weight: $font-weight-semibold;
   }
 }
 
+.resultado__section--tech {
+  grid-column: 1 / -1;
+}
+
+.resultado__section--checks,
+.resultado__section--close {
+  grid-column: 1;
+}
+
+.resultado__section--guide {
+  grid-column: 2;
+}
+
 .resultado__section--text {
-  padding: $space-4;
-  border: $border-width solid $color-border;
-  border-radius: $radius-md;
-  background: $color-search-result-hover;
+  align-content: start;
+  background: $color-panel-muted;
 
   p {
     margin: 0;
     color: $color-text-primary;
+    line-height: $line-height-relaxed;
   }
 }
 
@@ -121,43 +183,6 @@
   gap: $space-4;
 }
 
-.resultado__table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-  border: $border-width solid $color-border;
-  border-radius: $radius-md;
-
-  th,
-  td {
-    padding: $space-3 $space-4;
-    border-bottom: $border-width solid $color-border;
-    text-align: left;
-    vertical-align: top;
-  }
-
-  th {
-    width: $result-table-label-width;
-    background: $color-search-result-hover;
-    color: $color-text-secondary;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
-  }
-
-  td {
-    color: $color-text-primary;
-    font-weight: $font-weight-medium;
-    word-break: break-word;
-  }
-
-  tr:last-child {
-    th,
-    td {
-      border-bottom: 0;
-    }
-  }
-}
-
 .resultado__badges {
   display: flex;
   flex-wrap: wrap;
@@ -165,7 +190,8 @@
 }
 
 .resultado__badge {
-  background: $color-search-result-hover;
+  border: $border-width solid $color-border;
+  background: $color-surface-subtle;
   color: $color-primary;
 }
 
@@ -173,37 +199,61 @@
   display: grid;
   gap: $space-2;
   margin: 0;
-  padding: $space-4 $space-4 $space-4 $space-6;
-  border: $border-width solid $color-border;
-  border-radius: $radius-md;
-  background: $color-surface;
-  color: $color-text-primary;
+  padding: 0;
+  list-style: none;
 
   li {
-    padding-left: $space-1;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: $space-3;
+    align-items: start;
+    padding: $space-3;
+    border: $border-width solid $color-border;
+    border-radius: $radius-md;
+    background: $color-surface-subtle;
+  }
+
+  span {
+    display: inline-grid;
+    place-items: center;
+    width: $check-icon-size;
+    height: $check-icon-size;
+    border-radius: $radius-pill;
+    background: $color-criticality-medium-background;
+    color: $color-criticality-medium-text;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    margin: 0;
+    color: $color-text-primary;
+    font-size: $font-size-sm;
   }
 }
 
-@include respond-to(md) {
-  .resultado {
-    padding: $space-4;
+@media (max-width: $breakpoint-lg) {
+  .resultado,
+  .resultado__metrics {
+    grid-template-columns: 1fr;
   }
 
+  .resultado__section--checks,
+  .resultado__section--guide,
+  .resultado__section--close {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
   .resultado__header,
   .resultado__section-header {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .resultado__table {
-    th,
-    td {
-      display: block;
-      width: 100%;
-    }
-
-    th {
-      border-bottom: 0;
-    }
+  .resultado__header,
+  .resultado__section {
+    padding: $space-4;
   }
 }

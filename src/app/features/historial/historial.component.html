@@ -2,7 +2,7 @@
   <header class="historial__header">
     <div>
       <span class="historial__eyebrow">Turno actual</span>
-      <h2>Historial de consultas</h2>
+      <h2>Actividad</h2>
     </div>
 
     @if (historial().length > 0) {
@@ -11,28 +11,18 @@
   </header>
 
   @if (historial().length > 0) {
-    <div class="historial__tabla-contenedor">
-      <table class="historial__tabla">
-        <thead>
-          <tr>
-            <th scope="col">Hora</th>
-            <th scope="col">Servicio</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Equipo de Escalamiento</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of historial(); track item.timestamp + item.servicio.id) {
-            <tr>
-              <td>{{ formatearHora(item.timestamp) }}</td>
-              <td>{{ item.servicio.nombre }}</td>
-              <td>{{ item.servicio.categoria }}</td>
-              <td>{{ item.servicio.equipo_escalamiento }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+    <ol class="historial__timeline" aria-label="Historial de consultas">
+      @for (item of historial(); track item.timestamp + item.servicio.id) {
+        <li class="historial__item">
+          <time>{{ formatearHora(item.timestamp) }}</time>
+          <div class="historial__content">
+            <strong>{{ item.servicio.nombre }}</strong>
+            <span>{{ item.servicio.categoria }}</span>
+            <p>{{ item.servicio.equipo_escalamiento }}</p>
+          </div>
+        </li>
+      }
+    </ol>
   } @else {
     <p class="historial__vacio">No hay consultas registradas en este turno</p>
   }

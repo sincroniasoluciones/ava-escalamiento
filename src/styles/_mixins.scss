@@ -7,6 +7,13 @@
   box-shadow: $shadow-surface;
 }
 
+@mixin panel {
+  border: $border-width solid $color-border;
+  border-radius: $radius-lg;
+  background: $color-surface;
+  box-shadow: $shadow-control;
+}
+
 @mixin respond-to($breakpoint) {
   @if $breakpoint == sm {
     @media (max-width: $breakpoint-sm) {
