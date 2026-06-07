@@ -1,0 +1,39 @@
+<article class="historial">
+  <header class="historial__header">
+    <div>
+      <span class="historial__eyebrow">Turno actual</span>
+      <h2>Historial de consultas</h2>
+    </div>
+
+    @if (historial().length > 0) {
+      <button class="historial__limpiar" type="button" (click)="limpiar()">Limpiar turno</button>
+    }
+  </header>
+
+  @if (historial().length > 0) {
+    <div class="historial__tabla-contenedor">
+      <table class="historial__tabla">
+        <thead>
+          <tr>
+            <th scope="col">Hora</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Equipo de Escalamiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of historial(); track item.timestamp + item.servicio.id) {
+            <tr>
+              <td>{{ formatearHora(item.timestamp) }}</td>
+              <td>{{ item.servicio.nombre }}</td>
+              <td>{{ item.servicio.categoria }}</td>
+              <td>{{ item.servicio.equipo_escalamiento }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <p class="historial__vacio">No hay consultas registradas en este turno</p>
+  }
+</article>

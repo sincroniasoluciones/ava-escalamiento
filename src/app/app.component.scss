@@ -1,0 +1,80 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: $color-background;
+  color: $color-text-primary;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: $space-6;
+
+  @include respond-to(sm) {
+    padding: $space-4;
+  }
+}
+
+.app-shell__header {
+  display: flex;
+  align-items: center;
+  margin: calc($space-6 * -1) calc($space-6 * -1) $space-6;
+  padding: $space-5 $space-6;
+  min-height: $header-height;
+  background: $color-primary;
+
+  @include respond-to(sm) {
+    margin: calc($space-4 * -1) calc($space-4 * -1) $space-5;
+    padding: $space-4;
+  }
+}
+
+.app-shell__brand {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  width: 100%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+
+  h1 {
+    margin: 0;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $color-surface;
+  }
+}
+
+.app-shell__logo {
+  display: inline-grid;
+  place-items: center;
+  width: $logo-size;
+  height: $logo-size;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-primary;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+}
+
+.app-shell__section {
+  margin: 0 auto $space-5;
+  padding: $space-5 0;
+  max-width: $content-max-width;
+  border-bottom: $border-width solid $color-border;
+}
+
+.app-shell__section--search {
+  border-top: $border-accent-width solid $color-accent;
+}
+
+.app-shell__section--result {
+  min-height: $result-section-min-height;
+}
+
+.app-shell__section--history {
+  margin-bottom: 0;
+}

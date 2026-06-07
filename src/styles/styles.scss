@@ -1,0 +1,38 @@
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  font-family: $font-family-primary;
+  background: $color-background;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background: $color-background;
+  color: $color-text-primary;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.highlight {
+  border-radius: $radius-sm;
+  background: $color-highlight-background;
+  color: $color-highlight-text;
+  font-weight: $font-weight-semibold;
+}

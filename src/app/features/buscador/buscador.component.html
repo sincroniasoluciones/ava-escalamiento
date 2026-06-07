@@ -1,0 +1,32 @@
+<div class="buscador">
+  <label class="buscador__label" for="buscador-servicios">Buscar en matriz de escalamiento</label>
+  <input
+    id="buscador-servicios"
+    class="buscador__input"
+    type="search"
+    [formControl]="control"
+    placeholder="Buscar servicio, URL o categoría..."
+    autocomplete="off"
+  />
+
+  @if (resultados().length > 0) {
+    <ul class="buscador__resultados" aria-label="Resultados de búsqueda">
+      @for (servicio of resultados(); track servicio.id) {
+        <li>
+          <button class="buscador__resultado" type="button" (click)="seleccionar(servicio)">
+            <span class="buscador__contenido">
+              <strong [innerHTML]="servicio.nombre | highlight: termino()"></strong>
+              <span [innerHTML]="servicio.url | highlight: termino()"></span>
+              <small [innerHTML]="servicio.categoria | highlight: termino()"></small>
+            </span>
+            <span class="buscador__criticidad" [class]="'buscador__criticidad buscador__criticidad--' + servicio.criticidad.toLowerCase()">
+              {{ servicio.criticidad }}
+            </span>
+          </button>
+        </li>
+      }
+    </ul>
+  } @else if (termino().trim().length >= 2) {
+    <p class="buscador__sin-resultados">No se encontraron servicios</p>
+  }
+</div>

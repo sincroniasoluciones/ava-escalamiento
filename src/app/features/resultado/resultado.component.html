@@ -1,0 +1,82 @@
+@if (servicio(); as servicio) {
+  <article class="resultado">
+    <header class="resultado__header">
+      <div>
+        <span class="resultado__eyebrow">Servicio seleccionado</span>
+        <h2>{{ servicio.nombre }}</h2>
+      </div>
+      <span
+        class="resultado__criticidad"
+        [class.alta]="servicio.criticidad === 'Alta'"
+        [class.media]="servicio.criticidad === 'Media'"
+        [class.baja]="servicio.criticidad === 'Baja'"
+      >
+        {{ servicio.criticidad }}
+      </span>
+    </header>
+
+    <section class="resultado__section" aria-label="Información general">
+      <table class="resultado__table">
+        <tbody>
+          <tr>
+            <th scope="row">URL</th>
+            <td>{{ servicio.url }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Categoría</th>
+            <td>{{ servicio.categoria }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Responsable</th>
+            <td>{{ servicio.responsable }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Equipo de Escalamiento</th>
+            <td>{{ servicio.equipo_escalamiento }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="resultado__section" aria-labelledby="tecnologias-titulo">
+      <h3 id="tecnologias-titulo">Tecnologías</h3>
+      <div class="resultado__badges">
+        @for (tecnologia of servicio.tecnologias; track tecnologia) {
+          <span class="resultado__badge">{{ tecnologia }}</span>
+        }
+      </div>
+    </section>
+
+    <section class="resultado__section" aria-labelledby="descartes-titulo">
+      <h3 id="descartes-titulo">Descartes recomendados</h3>
+      <ol class="resultado__descartes">
+        @for (descarte of servicio.descartes; track descarte) {
+          <li>{{ descarte }}</li>
+        }
+      </ol>
+    </section>
+
+    <section class="resultado__section resultado__section--text" aria-labelledby="cierre-titulo">
+      <div class="resultado__section-header">
+        <h3 id="cierre-titulo">Descripción de cierre</h3>
+        <app-boton-copiar [texto]="servicio.descripcion_cierre" />
+      </div>
+      <p>{{ servicio.descripcion_cierre }}</p>
+    </section>
+
+    <section class="resultado__section resultado__section--text" aria-labelledby="guia-titulo">
+      <div class="resultado__section-header">
+        <h3 id="guia-titulo">Guía de escalamiento</h3>
+        <app-boton-copiar [texto]="servicio.guia_escalamiento" />
+      </div>
+      <p>{{ servicio.guia_escalamiento }}</p>
+    </section>
+  </article>
+} @else {
+  <article class="resultado resultado--empty">
+    <div class="resultado__empty-content">
+      <span class="resultado__empty-icon" aria-hidden="true">AVA</span>
+      <p>Busca un servicio para ver la información</p>
+    </div>
+  </article>
+}

@@ -1,0 +1,209 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.resultado {
+  @include surface;
+
+  display: grid;
+  gap: $space-5;
+  padding: $space-5;
+}
+
+.resultado--empty {
+  min-height: $result-section-min-height;
+  place-items: center;
+  text-align: center;
+}
+
+.resultado__empty-content {
+  display: grid;
+  justify-items: center;
+  gap: $space-3;
+  color: $color-text-secondary;
+  font-weight: $font-weight-medium;
+
+  p {
+    margin: 0;
+  }
+}
+
+.resultado__empty-icon {
+  display: inline-grid;
+  place-items: center;
+  width: $result-empty-icon-size;
+  height: $result-empty-icon-size;
+  border-radius: $radius-md;
+  background: $color-search-result-hover;
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+}
+
+.resultado__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: $space-4;
+  padding-bottom: $space-4;
+  border-bottom: $border-width solid $color-border;
+
+  h2 {
+    margin: $space-1 0 0;
+    color: $color-primary;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+  }
+}
+
+.resultado__eyebrow {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
+
+.resultado__criticidad,
+.resultado__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: $badge-min-height;
+  padding: $space-1 $space-3;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  white-space: nowrap;
+}
+
+.resultado__criticidad.alta {
+  background: $color-criticality-high-background;
+  color: $color-criticality-high-text;
+}
+
+.resultado__criticidad.media {
+  background: $color-criticality-medium-background;
+  color: $color-criticality-medium-text;
+}
+
+.resultado__criticidad.baja {
+  background: $color-criticality-low-background;
+  color: $color-criticality-low-text;
+}
+
+.resultado__section {
+  display: grid;
+  gap: $space-3;
+
+  h3 {
+    margin: 0;
+    color: $color-text-primary;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.resultado__section--text {
+  padding: $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-md;
+  background: $color-search-result-hover;
+
+  p {
+    margin: 0;
+    color: $color-text-primary;
+  }
+}
+
+.resultado__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+}
+
+.resultado__table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: $border-width solid $color-border;
+  border-radius: $radius-md;
+
+  th,
+  td {
+    padding: $space-3 $space-4;
+    border-bottom: $border-width solid $color-border;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    width: $result-table-label-width;
+    background: $color-search-result-hover;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  td {
+    color: $color-text-primary;
+    font-weight: $font-weight-medium;
+    word-break: break-word;
+  }
+
+  tr:last-child {
+    th,
+    td {
+      border-bottom: 0;
+    }
+  }
+}
+
+.resultado__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.resultado__badge {
+  background: $color-search-result-hover;
+  color: $color-primary;
+}
+
+.resultado__descartes {
+  display: grid;
+  gap: $space-2;
+  margin: 0;
+  padding: $space-4 $space-4 $space-4 $space-6;
+  border: $border-width solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+  color: $color-text-primary;
+
+  li {
+    padding-left: $space-1;
+  }
+}
+
+@include respond-to(md) {
+  .resultado {
+    padding: $space-4;
+  }
+
+  .resultado__header,
+  .resultado__section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resultado__table {
+    th,
+    td {
+      display: block;
+      width: 100%;
+    }
+
+    th {
+      border-bottom: 0;
+    }
+  }
+}

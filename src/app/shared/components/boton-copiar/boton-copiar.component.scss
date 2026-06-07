@@ -1,0 +1,32 @@
+@use '../../../../styles/variables' as *;
+
+.boton-copiar {
+  min-height: $copy-button-height;
+  padding: $space-2 $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    border-color $transition-duration-fast ease,
+    background-color $transition-duration-fast ease,
+    color $transition-duration-fast ease,
+    transform $transition-duration-fast ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $color-accent;
+    background: $color-primary;
+    color: $color-surface;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 $focus-ring-width $color-focus-ring;
+  }
+}

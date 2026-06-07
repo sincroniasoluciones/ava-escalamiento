@@ -1,0 +1,72 @@
+$font-family-primary: 'Inter', system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', sans-serif;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.5rem;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-base: 1.5;
+$line-height-tight: 1.2;
+
+$color-primary: #1f4e79;
+$color-accent: #2e75b6;
+$color-background: #f5f7fa;
+$color-surface: #ffffff;
+$color-border: #d9e2ec;
+$color-text-primary: #1b2733;
+$color-text-secondary: #52616f;
+$color-text-muted: #7b8794;
+$color-highlight-background: #d9ecff;
+$color-highlight-text: #17324d;
+$color-shadow: rgba(31, 78, 121, 0.12);
+$color-focus-ring: rgba(46, 117, 182, 0.18);
+$color-search-result-hover: #f0f6fc;
+$color-criticality-high-background: #fff2cc;
+$color-criticality-high-text: #7f6000;
+$color-criticality-medium-background: #e2efda;
+$color-criticality-medium-text: #375623;
+$color-criticality-low-background: #ddebf7;
+$color-criticality-low-text: #1f4e79;
+
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.5rem;
+$space-6: 2rem;
+$space-7: 3rem;
+
+$radius-sm: 0.5rem;
+$radius-md: 0.75rem;
+$radius-lg: 1rem;
+
+$border-width: 1px;
+$border-accent-width: 0.25rem;
+
+$shadow-surface: 0 0.75rem 2rem $color-shadow;
+$transition-duration-fast: 160ms;
+
+$content-max-width: 72rem;
+$header-height: 5rem;
+$logo-size: 3rem;
+$result-section-min-height: 12rem;
+$result-empty-icon-size: 3.5rem;
+$result-table-label-width: 13rem;
+$search-input-height: 3rem;
+$search-result-min-height: 4.75rem;
+$search-results-max-height: 24rem;
+$focus-ring-width: 0.1875rem;
+$badge-min-height: 1.75rem;
+$copy-button-height: 2.5rem;
+$history-table-min-width: 48rem;
+
+$breakpoint-sm: 40rem;
+$breakpoint-md: 48rem;
+$breakpoint-lg: 64rem;
+$breakpoint-xl: 80rem;

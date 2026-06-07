@@ -1,0 +1,158 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.buscador {
+  @include surface;
+
+  position: relative;
+  padding: $space-5;
+  border-radius: $radius-md;
+}
+
+.buscador__label {
+  display: block;
+  margin-bottom: $space-2;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+}
+
+.buscador__input {
+  width: 100%;
+  min-height: $search-input-height;
+  padding: $space-3 $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-sm;
+  outline: none;
+  background: $color-surface;
+  color: $color-text-primary;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 $focus-ring-width $color-focus-ring;
+  }
+}
+
+.buscador__resultados {
+  display: grid;
+  gap: $space-2;
+  max-height: $search-results-max-height;
+  margin: $space-4 0 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.buscador__resultado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  width: 100%;
+  min-height: $search-result-min-height;
+  padding: $space-3 $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  color: $color-text-primary;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: $color-accent;
+    background: $color-search-result-hover;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 $focus-ring-width $color-focus-ring;
+  }
+}
+
+.buscador__contenido {
+  display: grid;
+  gap: $space-1;
+  min-width: 0;
+
+  strong,
+  span,
+  small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+  }
+
+  span {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+  }
+
+  small {
+    color: $color-text-muted;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.buscador__criticidad {
+  flex: 0 0 auto;
+  padding: $space-1 $space-3;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+}
+
+.buscador__criticidad--alta {
+  background: $color-criticality-high-background;
+  color: $color-criticality-high-text;
+}
+
+.buscador__criticidad--media {
+  background: $color-criticality-medium-background;
+  color: $color-criticality-medium-text;
+}
+
+.buscador__criticidad--baja {
+  background: $color-criticality-low-background;
+  color: $color-criticality-low-text;
+}
+
+.buscador__sin-resultados {
+  margin: $space-4 0 0;
+  padding: $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-sm;
+  color: $color-text-secondary;
+  background: $color-search-result-hover;
+  font-weight: $font-weight-medium;
+}
+
+@include respond-to(sm) {
+  .buscador {
+    padding: $space-4;
+  }
+
+  .buscador__resultado {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: $space-3;
+  }
+}
