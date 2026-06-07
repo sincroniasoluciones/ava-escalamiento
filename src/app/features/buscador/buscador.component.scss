@@ -9,7 +9,7 @@
   margin-bottom: $space-2;
   color: $color-text-secondary;
   font-size: $font-size-sm;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
 }
 
 .buscador__control {
@@ -20,31 +20,40 @@
   min-height: $search-input-height;
   padding: 0 $space-4;
   border: $border-width solid $color-border-strong;
-  border-radius: $radius-xl;
-  background: $color-surface;
+  border-radius: $radius-2xl;
+  background: rgba(255, 255, 255, 0.94);
   box-shadow: $shadow-spotlight;
+  backdrop-filter: blur(1.25rem);
   transition:
-    border-color $transition-duration-fast ease,
-    box-shadow $transition-duration-fast ease,
-    transform $transition-duration-fast ease;
+    border-color $transition-duration-medium ease,
+    box-shadow $transition-duration-medium ease,
+    transform $transition-duration-medium ease;
 
   &:focus-within {
-    border-color: $color-accent;
+    border-color: $color-primary;
     box-shadow: $shadow-spotlight-active;
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.005);
+  }
+}
+
+.buscador__icon,
+.buscador__resultado-icon {
+  display: inline-grid;
+  place-items: center;
+  border-radius: $radius-lg;
+  background: $color-surface-subtle;
+  color: $color-primary;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
   }
 }
 
 .buscador__icon {
-  display: inline-grid;
-  place-items: center;
   width: $search-icon-size;
   height: $search-icon-size;
-  border-radius: $radius-sm;
-  background: $color-surface-subtle;
-  color: $color-text-muted;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
 }
 
 .buscador__input {
@@ -55,6 +64,7 @@
   outline: none;
   background: transparent;
   color: $color-text-primary;
+  font-size: $font-size-lg;
 
   &::placeholder {
     color: $color-text-muted;
@@ -73,23 +83,24 @@
   padding: $space-2;
   overflow: auto;
   border: $border-width solid $color-border-strong;
-  border-radius: $radius-lg;
-  background: $color-surface;
+  border-radius: $radius-xl;
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: $shadow-popover;
   list-style: none;
+  animation: reveal $transition-duration-medium ease;
 }
 
 .buscador__resultado {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: $space-4;
+  gap: $space-3;
   width: 100%;
   min-height: $search-result-min-height;
   padding: $space-3;
   border: $border-width solid transparent;
-  border-radius: $radius-md;
-  background: $color-surface;
+  border-radius: $radius-lg;
+  background: transparent;
   color: $color-text-primary;
   text-align: left;
   cursor: pointer;
@@ -101,14 +112,28 @@
   &:hover,
   &:focus-visible {
     border-color: $color-border-strong;
-    background: $color-surface-subtle;
+    background: $color-search-result-hover;
     transform: translateY(-1px);
+  }
+
+  &:hover .buscador__resultado-icon,
+  &:focus-visible .buscador__resultado-icon {
+    background: $color-primary;
+    color: $color-surface;
   }
 
   &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 $focus-ring-width $color-focus-ring;
   }
+}
+
+.buscador__resultado-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  transition:
+    background-color $transition-duration-fast ease,
+    color $transition-duration-fast ease;
 }
 
 .buscador__contenido {
@@ -125,11 +150,11 @@
 
   strong {
     font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
   }
 
   small {
-    color: $color-text-muted;
+    color: $color-text-secondary;
     font-size: $font-size-sm;
     font-weight: $font-weight-medium;
   }
@@ -166,17 +191,37 @@
   margin: 0;
   padding: $space-4;
   border: $border-width solid $color-border-strong;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   background: $color-surface;
   color: $color-text-secondary;
   box-shadow: $shadow-popover;
   font-weight: $font-weight-medium;
+  animation: reveal $transition-duration-medium ease;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-0.375rem) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 @media (max-width: $breakpoint-sm) {
+  .buscador__input {
+    font-size: $font-size-base;
+  }
+
   .buscador__resultado {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: $space-3;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .buscador__criticidad {
+    grid-column: 2;
+    justify-self: start;
   }
 }

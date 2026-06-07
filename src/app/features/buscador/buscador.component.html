@@ -1,7 +1,12 @@
 <div class="buscador">
   <label class="buscador__label" for="buscador-servicios">Buscar en matriz de escalamiento</label>
   <div class="buscador__control">
-    <span class="buscador__icon" aria-hidden="true">⌘</span>
+    <span class="buscador__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M10.8 4.5a6.3 6.3 0 1 1 0 12.6 6.3 6.3 0 0 1 0-12.6Zm0 2a4.3 4.3 0 1 0 0 8.6 4.3 4.3 0 0 0 0-8.6Z" />
+        <path d="m15.4 15 4.1 4.1-1.4 1.4-4.1-4.1 1.4-1.4Z" />
+      </svg>
+    </span>
     <input
       id="buscador-servicios"
       class="buscador__input"
@@ -17,6 +22,12 @@
       @for (servicio of resultados(); track servicio.id) {
         <li>
           <button class="buscador__resultado" type="button" (click)="seleccionar(servicio)">
+            <span class="buscador__resultado-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 4.75A2.75 2.75 0 0 1 7.75 2h8.5A2.75 2.75 0 0 1 19 4.75v14.5A2.75 2.75 0 0 1 16.25 22h-8.5A2.75 2.75 0 0 1 5 19.25V4.75Zm2.75-.75a.75.75 0 0 0-.75.75v14.5c0 .41.34.75.75.75h8.5c.41 0 .75-.34.75-.75V4.75a.75.75 0 0 0-.75-.75h-8.5Z" />
+                <path d="M9 7h6v2H9V7Zm0 4h6v2H9v-2Zm0 4h4v2H9v-2Z" />
+              </svg>
+            </span>
             <span class="buscador__contenido">
               <strong [innerHTML]="servicio.nombre | highlight: termino()"></strong>
               <small [innerHTML]="servicio.categoria | highlight: termino()"></small>

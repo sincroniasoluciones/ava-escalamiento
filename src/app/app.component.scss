@@ -3,7 +3,7 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: $color-background;
+  background: transparent;
   color: $color-text-primary;
 }
 
@@ -15,18 +15,32 @@
 }
 
 .app-shell__header {
-  display: flex;
-  align-items: center;
   max-width: $content-max-width;
   width: 100%;
-  min-height: $header-height;
   margin: 0 auto;
 }
 
+.app-shell__hero {
+  position: relative;
+  display: grid;
+  gap: $space-4;
+  overflow: hidden;
+  min-height: $hero-min-height;
+  padding: $space-6;
+  border: $border-width solid $color-hero-border;
+  border-radius: $radius-2xl;
+  background:
+    linear-gradient(135deg, $color-hero-start 0%, $color-hero-end 58%, $color-action-panel-accent 100%),
+    $color-surface;
+  box-shadow: $shadow-hero;
+}
+
 .app-shell__brand {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: $space-3;
+  gap: $space-4;
 }
 
 .app-shell__logo {
@@ -35,34 +49,79 @@
   width: $logo-size;
   height: $logo-size;
   border: $border-width solid $color-border-strong;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   background: $color-surface;
   color: $color-primary;
-  font-size: $font-size-lg;
-  font-weight: $font-weight-bold;
-  box-shadow: $shadow-control;
+  box-shadow: $shadow-control-hover;
+
+  svg {
+    width: 1.55rem;
+    height: 1.55rem;
+    fill: currentColor;
+  }
 }
 
 .app-shell__title {
   display: grid;
   gap: $space-1;
 
-  h1,
-  p {
-    margin: 0;
+  span {
+    color: $color-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-label;
+    text-transform: uppercase;
   }
 
   h1 {
+    margin: 0;
+    max-width: 42rem;
     color: $color-text-primary;
-    font-size: $font-size-2xl;
+    font-size: clamp(2rem, 4vw, 3.75rem);
     font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
+    line-height: 1.02;
   }
+}
 
-  p {
+.app-shell__description {
+  position: relative;
+  z-index: 1;
+  max-width: 38rem;
+  margin: 0;
+  color: $color-text-secondary;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+}
+
+.app-shell__signals {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+
+  span {
+    padding: $space-2 $space-3;
+    border: $border-width solid $color-border;
+    border-radius: $radius-pill;
+    background: rgba(255, 255, 255, 0.72);
     color: $color-text-secondary;
     font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.app-shell__visual {
+  position: absolute;
+  right: $space-6;
+  bottom: $space-5;
+  width: min(22rem, 36vw);
+  color: $color-primary;
+  opacity: 0.12;
+
+  path,
+  circle {
+    fill: currentColor;
   }
 }
 
@@ -76,6 +135,8 @@
 .app-shell__section--search {
   position: relative;
   z-index: 3;
+  margin-top: calc($space-7 * -1);
+  padding: 0 $space-6;
 }
 
 .app-shell__workspace {
@@ -105,11 +166,21 @@
     padding: $space-4;
   }
 
+  .app-shell__hero {
+    min-height: auto;
+    padding: $space-5;
+  }
+
   .app-shell__brand {
     align-items: flex-start;
   }
 
-  .app-shell__title h1 {
-    font-size: $font-size-xl;
+  .app-shell__section--search {
+    margin-top: calc($space-5 * -1);
+    padding: 0 $space-3;
+  }
+
+  .app-shell__visual {
+    display: none;
   }
 }

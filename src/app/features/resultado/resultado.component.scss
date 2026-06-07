@@ -13,6 +13,7 @@
   min-height: $empty-panel-min-height;
   grid-template-columns: 1fr;
   place-items: center;
+  overflow: hidden;
   text-align: center;
 }
 
@@ -23,23 +24,25 @@
   color: $color-text-secondary;
   font-weight: $font-weight-medium;
 
-  p {
+  p,
+  span {
     margin: 0;
+  }
+
+  p {
+    color: $color-text-primary;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+  }
+
+  span {
+    color: $color-text-secondary;
   }
 }
 
-.resultado__empty-icon {
-  display: inline-grid;
-  place-items: center;
-  width: $result-empty-icon-size;
-  height: $result-empty-icon-size;
-  border: $border-width solid $color-border-strong;
-  border-radius: $radius-lg;
-  background: $color-surface;
+.resultado__empty-illustration {
+  width: min(16rem, 80%);
   color: $color-primary;
-  font-size: $font-size-lg;
-  font-weight: $font-weight-bold;
-  box-shadow: $shadow-control;
 }
 
 .resultado__header,
@@ -64,7 +67,7 @@
   h2 {
     margin: 0;
     color: $color-text-primary;
-    font-size: $font-size-2xl;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: $font-weight-bold;
     line-height: $line-height-tight;
   }
@@ -82,12 +85,19 @@
 .resultado__badge {
   display: inline-flex;
   align-items: center;
+  gap: $space-1;
   min-height: $badge-min-height;
   padding: $space-1 $space-3;
   border-radius: $radius-pill;
   font-size: $font-size-xs;
   font-weight: $font-weight-bold;
   white-space: nowrap;
+
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    fill: currentColor;
+  }
 }
 
 .resultado__criticidad.alta {
@@ -119,8 +129,15 @@
   min-height: $metric-card-min-height;
   padding: $space-4;
   border: $border-width solid $color-border;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   background: $color-surface-subtle;
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: $color-primary;
+    fill: currentColor;
+  }
 
   span {
     color: $color-text-muted;
@@ -134,7 +151,7 @@
     overflow-wrap: anywhere;
     color: $color-text-primary;
     font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
     line-height: $line-height-base;
   }
 }
@@ -145,10 +162,20 @@
   padding: $space-5;
 
   h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
     margin: 0;
     color: $color-text-primary;
     font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $color-primary;
+      fill: currentColor;
+    }
   }
 }
 
@@ -163,16 +190,20 @@
 
 .resultado__section--guide {
   grid-column: 2;
+  border-color: $color-action-panel-border;
+  background:
+    linear-gradient(135deg, $color-action-panel 0%, $color-surface 64%),
+    $color-surface;
+  box-shadow: $shadow-surface;
 }
 
 .resultado__section--text {
   align-content: start;
-  background: $color-panel-muted;
 
   p {
     margin: 0;
     color: $color-text-primary;
-    line-height: $line-height-relaxed;
+    font-size: $font-size-base;
   }
 }
 
@@ -209,7 +240,7 @@
     align-items: start;
     padding: $space-3;
     border: $border-width solid $color-border;
-    border-radius: $radius-md;
+    border-radius: $radius-lg;
     background: $color-surface-subtle;
   }
 

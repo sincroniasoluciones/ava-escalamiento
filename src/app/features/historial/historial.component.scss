@@ -16,11 +16,21 @@
   gap: $space-4;
 
   h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
     margin: $space-1 0 0;
     color: $color-text-primary;
     font-size: $font-size-lg;
     font-weight: $font-weight-bold;
     line-height: $line-height-tight;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+      color: $color-primary;
+      fill: currentColor;
+    }
   }
 }
 
@@ -40,7 +50,7 @@
   background: $color-surface;
   color: $color-text-primary;
   font-size: $font-size-xs;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   white-space: nowrap;
   cursor: pointer;
   transition:
@@ -50,8 +60,9 @@
 
   &:hover,
   &:focus-visible {
-    border-color: $color-accent;
-    background: $color-surface-subtle;
+    border-color: $color-danger;
+    background: $color-danger-subtle;
+    color: $color-danger-strong;
     transform: translateY(-1px);
   }
 
@@ -62,6 +73,7 @@
 }
 
 .historial__timeline {
+  position: relative;
   display: grid;
   gap: $space-3;
   margin: 0;
@@ -71,20 +83,22 @@
 
 .historial__item {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto auto minmax(0, 1fr);
   gap: $space-3;
   align-items: start;
   padding: $space-3;
   border: $border-width solid $color-border;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   background: $color-surface-subtle;
   transition:
     border-color $transition-duration-fast ease,
-    transform $transition-duration-fast ease;
+    transform $transition-duration-fast ease,
+    box-shadow $transition-duration-fast ease;
 
   &:hover {
     border-color: $color-border-strong;
-    transform: translateY(-1px);
+    box-shadow: $shadow-control;
+    transform: translateY(-2px);
   }
 
   time {
@@ -92,6 +106,15 @@
     font-size: $font-size-xs;
     font-weight: $font-weight-bold;
   }
+}
+
+.historial__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-top: 0.25rem;
+  border-radius: $radius-pill;
+  background: $color-accent;
+  box-shadow: 0 0 0 0.25rem rgba(6, 182, 212, 0.12);
 }
 
 .historial__content {
@@ -110,7 +133,7 @@
   strong {
     color: $color-text-primary;
     font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-bold;
   }
 
   span,
@@ -123,14 +146,37 @@
 }
 
 .historial__vacio {
+  display: grid;
+  justify-items: center;
+  gap: $space-3;
   margin: 0;
   padding: $space-5;
   border: $border-width dashed $color-border-strong;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   background: $color-surface-subtle;
   color: $color-text-secondary;
   text-align: center;
   font-weight: $font-weight-medium;
+
+  svg {
+    width: 7rem;
+    color: $color-primary;
+
+    path:first-child {
+      fill: $color-action-panel;
+      stroke: $color-action-panel-border;
+      stroke-width: 2;
+    }
+
+    path:last-child {
+      fill: currentColor;
+      opacity: 0.28;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
 }
 
 @media (max-width: $breakpoint-sm) {

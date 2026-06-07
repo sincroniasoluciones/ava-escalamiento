@@ -2,7 +2,12 @@
   <header class="historial__header">
     <div>
       <span class="historial__eyebrow">Turno actual</span>
-      <h2>Actividad</h2>
+      <h2>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4h14v2H5V4Zm0 5h14v2H5V9Zm0 5h9v2H5v-2Zm0 5h6v2H5v-2Z" />
+        </svg>
+        Actividad
+      </h2>
     </div>
 
     @if (historial().length > 0) {
@@ -14,6 +19,7 @@
     <ol class="historial__timeline" aria-label="Historial de consultas">
       @for (item of historial(); track item.timestamp + item.servicio.id) {
         <li class="historial__item">
+          <span class="historial__dot" aria-hidden="true"></span>
           <time>{{ formatearHora(item.timestamp) }}</time>
           <div class="historial__content">
             <strong>{{ item.servicio.nombre }}</strong>
@@ -24,6 +30,12 @@
       }
     </ol>
   } @else {
-    <p class="historial__vacio">No hay consultas registradas en este turno</p>
+    <div class="historial__vacio">
+      <svg viewBox="0 0 120 92" aria-hidden="true">
+        <path d="M24 22h72a12 12 0 0 1 12 12v24a12 12 0 0 1-12 12H24a12 12 0 0 1-12-12V34a12 12 0 0 1 12-12Z" />
+        <path d="M38 36h44v6H38v-6Zm0 14h28v6H38v-6Z" />
+      </svg>
+      <p>No hay consultas registradas en este turno</p>
+    </div>
   }
 </article>

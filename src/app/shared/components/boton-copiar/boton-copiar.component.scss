@@ -1,6 +1,10 @@
 @use '../../../../styles/variables' as *;
 
 .boton-copiar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
   min-height: $compact-button-height;
   padding: $space-2 $space-3;
   border: $border-width solid $color-border-strong;
@@ -8,22 +12,30 @@
   background: $color-surface;
   color: $color-text-primary;
   font-size: $font-size-xs;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   white-space: nowrap;
   cursor: pointer;
   box-shadow: $shadow-control;
   transition:
     border-color $transition-duration-fast ease,
     background-color $transition-duration-fast ease,
+    color $transition-duration-fast ease,
     transform $transition-duration-fast ease,
     box-shadow $transition-duration-fast ease;
 
+  svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: currentColor;
+  }
+
   &:hover,
   &:focus-visible {
-    border-color: $color-accent;
-    background: $color-surface-subtle;
+    border-color: $color-primary;
+    background: $color-primary;
+    color: $color-surface;
     box-shadow: $shadow-control-hover;
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
   }
 
   &:focus-visible {
